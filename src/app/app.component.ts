@@ -6,6 +6,7 @@ import { UiSwitchModule } from 'ngx-ui-switch';
 import { HeaderComponent } from './header/header.component';
 import { AppService } from './shared/services/app.service';
 import { LocalStorageService } from './shared/services/local-storage.service';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { LocalStorageService } from './shared/services/local-storage.service';
   imports: [
     LoaderComponent,
     HeaderComponent,
+    SearchBarComponent,
     CommonModule,
     RouterOutlet,
     RouterLink,
