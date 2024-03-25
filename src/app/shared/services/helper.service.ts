@@ -7,18 +7,29 @@ import { AppService } from './app.service';
 export class HelperService {
   private unitSystem: string;
 
-  constructor(
-    private appService: AppService
-  ) {
+  constructor(private appService: AppService) {
     this.unitSystem = appService.getUnitSystem();
   }
 
   getWindDirection(windDegree: number): string {
     const windDirectionIndex = Math.round((windDegree - 11.25) / 22.5);
     const windNames = [
-      'North', 'North Northeast', 'Northeast', 'East Northeast', 'East',
-      'East Southeast', 'Southeast', 'South Southeast', 'South', 'South Southwest',
-      'Southwest', 'West Southwest', 'West', 'West Northwest', 'Northwest', 'North Northwest'
+      'North',
+      'North Northeast',
+      'Northeast',
+      'East Northeast',
+      'East',
+      'East Southeast',
+      'Southeast',
+      'South Southeast',
+      'South',
+      'South Southwest',
+      'Southwest',
+      'West Southwest',
+      'West',
+      'West Northwest',
+      'Northwest',
+      'North Northwest',
     ];
 
     return windNames[windDirectionIndex];
@@ -26,8 +37,19 @@ export class HelperService {
 
   getWindBeaufortScaleByMeterInSecond(windSpeed: number): string {
     const beaufortWindScale = [
-      'calm', 'light air', 'light breeze', 'gentle breeze', 'moderate breeze', 'fresh breeze',
-      'strong breeze', 'high wind, near gale', 'gale', 'severe gale', 'storm', 'violent storm', 'hurricane'
+      'calm',
+      'light air',
+      'light breeze',
+      'gentle breeze',
+      'moderate breeze',
+      'fresh breeze',
+      'strong breeze',
+      'high wind, near gale',
+      'gale',
+      'severe gale',
+      'storm',
+      'violent storm',
+      'hurricane',
     ];
     let windSpeedIndex = 0;
     const windSpeedScale = [
@@ -43,15 +65,17 @@ export class HelperService {
       [20.9, 24.5],
       [24.6, 28.5],
       [28.6, 32.7],
-      [32.8, 1000]
+      [32.8, 1000],
     ];
 
     windSpeedScale.forEach((speedInterval, index) => {
-      if (windSpeedScale[index][0] <= windSpeed && windSpeed <= windSpeedScale[index][1]) {
+      if (
+        windSpeedScale[index][0] <= windSpeed &&
+        windSpeed <= windSpeedScale[index][1]
+      ) {
         windSpeedIndex = index;
       }
     });
-
 
     return beaufortWindScale[windSpeedIndex];
   }
@@ -60,8 +84,13 @@ export class HelperService {
     return Math.round(pressureInHpa * 0.75006375541921);
   }
 
-  isItCurrentDayByTimestamps(firstTimestamp: any, secondTimestamp: any): boolean {
-    const days = [firstTimestamp, secondTimestamp].map(timestamp => Math.floor(timestamp / (3600 * 24)));
+  isItCurrentDayByTimestamps(
+    firstTimestamp: any,
+    secondTimestamp: any
+  ): boolean {
+    const days = [firstTimestamp, secondTimestamp].map((timestamp) =>
+      Math.floor(timestamp / (3600 * 24))
+    );
 
     return days[0] === days[1];
   }
